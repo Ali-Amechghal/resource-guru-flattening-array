@@ -1,7 +1,18 @@
 const assert = require("assert");
 
 function flatten(arr) {
-  return [];
+  let flatArray = [];
+  if (!Array.isArray(arr) || !arr.length) return [];
+
+  arr.forEach((item) => {
+    if (Array.isArray(item)) {
+      flatArray.push(...flatten(item));
+    } else {
+      flatArray.push(item);
+    }
+  });
+
+  return flatArray;
 }
 
 assert.deepEqual(
